@@ -1,0 +1,23 @@
+<html>
+
+    <head>
+        <title>Compare Mobiles</title>
+    </head>
+    
+    <body>
+        <h1>Find your perfect phone</h1>
+        <h2>Select mobile platform</h2>
+        
+        {% if categories %}
+            <ul>
+                {% for c in categories %}
+                    <li>{{ c.platform }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+                
+    </body>
+
+</html>
