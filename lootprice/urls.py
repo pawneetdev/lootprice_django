@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^compare/', views.index),
     url(r'^compare/', include('compare.urls')),
-    #url(r'^mobile/', views.viewmobile),
+    url(r'^display/', views.display),
 ]
