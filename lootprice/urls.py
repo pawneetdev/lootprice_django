@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^compare/', views.index),
     url(r'^compare/', include('compare.urls')),
-    url(r'^display/', views.display),
+    #url(r'^display/', views.display),
+    #url(r'^search/$', views.search, name = 'search'),
 ]
