@@ -8,7 +8,7 @@ from compare.models import Category, Mobile
 
 
 def populate():
-    android_cat = add_cat('Android Mobiles')
+    android_cat = add_cat('Android')
 
     add_mobile(cat=android_cat, company="Xiaomi", name="Mi3", price="14999")
 
@@ -16,11 +16,16 @@ def populate():
     
     add_mobile(cat=android_cat, company="Asus", name="Zenfone 2", price="19999")
     
-    ios_cat = add_cat('IOS Mobiles')
+    ios_cat = add_cat('IOS')
     
-    add_mobile(cat=ios_cat, company="Apple", name="5S", price="39999")
+    add_mobile(cat=ios_cat, company="Apple", name="Iphone 5S", price="39999")
     
-    add_mobile(cat=ios_cat, company="Apple", name="6", price="69999")
+    add_mobile(cat=ios_cat, company="Apple", name="Iphone 6", price="69999")
+
+    android_cat = add_cat('Window phones')
+
+    add_mobile(cat=android_cat, company="Microsoft", name="Lumia", price="14999")
+
     
     
     # Print out what we have added to the user.

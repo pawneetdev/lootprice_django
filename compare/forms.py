@@ -1,28 +1,40 @@
-#from compare.models import Category, Mobile
-#from django import forms
+from compare.models import Category, Mobile
+from django import forms
 
-#categories = Category.objects.all()
+categories = Category.objects.all()
+
+choices=[]
+
+if categories:
+	for c in categories:
+		choices.append([c.platform, c.platform],)
+		#a = ((c.platform, c.platform),)
+	
+choices1 = [('All','All')] + choices
 
 
-#platforms = (
-#	('1', 'Andorid'),
-#	('2', 'IOS'),
-#	('3', 'Window phones'),
-#)
+class xyz(forms.Form):
+    
+	Mobiles = forms.ChoiceField(choices=choices1, required=False, label = "Mobiles")
+
+
+class search_mobiles(forms.Form):
+	
+	Search = forms.CharField(max_length = 128, required = False, label = "")
+
+class compare_form(forms.Form):
+	
+	m1 = forms.CharField(max_length = 128, required = True, label = "")
+	#m2 = forms.CharField(max_length = 128, required = True, label = "")
+	
+#platforms = [
+#	['1', 'Andorid'],
+#	['2', 'IOS'],
+#	['3', 'Window phones'],
+#]
+
 
 #class xyz(forms.Form):
 #	name = forms.CharField(max_length=128)
 #	choice = forms.ChoiceField(choices=platforms)
-
-#class NameForm(forms.Form):
-#    your_name = forms.CharField(label='Your name', max_length=100)
-    
-#if categoies:
-#	for c in categories:
-#		choices.append((c.platform, c.platform),)
-
-from django import forms
-
-class NameForm(forms.Form):
-    your_name = forms.CharField(widget=forms.TextInput())
 

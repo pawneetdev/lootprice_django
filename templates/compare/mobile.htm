@@ -1,15 +1,29 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
 <html>
-
-    <head>
-        <title>Compare Mobiles</title>
-    </head>
     
-    <body>
-        {% csrf_token %}
-        {form}
-        <h1>{{ plat }}</h1>
-        
+    <head>
+        <title>{{ plat }}</title>
+    </head>
 
+    <body> 
+        <h1>{{ plat }}</h1>
+            {% if mobile_post %}
+				<ol>
+					{% for mobile in mobile_post %}
+                
+					<li><div style = "border: 1px solid; margin-bottom: 5px; padding-left: 10px; width:350px; height: 150px;">
+						<h2><div style = "float:left;"><img src = "{% static 'mobiles/'%}{{ mobile }}.jpg" height = "100" width = "80"></div>
+						<div style = "margin-left: 150px; padding-top: 10px;"><a href = "/compare/specs/{{ mobile.id }}">{{ mobile }}</a></h2>
+						<h4 style = "margin-left: 150px;">{{ mobile.price }}</h4></div></li>
+					</div>
+					{% endfor %}
+				</ol>
+            {% else %}
+                <strong>No mobiles currently in category.</strong>
+            {% endif %}
     </body>
 
 </html>

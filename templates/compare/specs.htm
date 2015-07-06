@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>{{ mobile.price }}</title>
+		<style>
+			table, th, td{
+				border: 1px solid black;
+				border-collapse: collapse;
+				width: 300px;
+			}
+			
+		</style>
+	</head>
+	
+		<body>
+		{% if mobile %}
+				
+				{% for m in mobile %}
+					<center><div style = "padding-top: 10px;">
+						<h1 style = "padding-bottom: 40px;"><u>{{ m }}</u></h1>
+						
+						<img src = "{% static 'mobiles/'%}{{ m }}.jpg" height = "250" width = "220" style = "float:left; margin-left: 100px;">
+						
+						<table style = "margin-top:50px;">
+							<tr>
+								<td><h3>Price</h3></td>
+								<td><h3>{{ m.price }}</h3></td>
+							</tr>
+							<tr>
+								<td><h3>OS</h3></td>
+								<td><h3>{{ m.os }}</h3></td>
+							</tr>
+							<tr>
+								<td><h3>Processor</h3></td>
+								<td><h3>{{ m.processor }}</h3></td>
+								</tr>
+							<tr>
+								<td><h3>Camera</h3></td>
+								<td><h3>{{ m.camera }}</h3></td>
+							</tr>
+						</table>
+						
+					</div></center>
+					
+				{% endfor %}
+				
+		{% endif %}
+		</body>
+</html>

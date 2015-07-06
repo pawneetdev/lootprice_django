@@ -11,9 +11,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='category',
             name='slug',
-            field=models.SlugField(unique=True),
         ),
     ]

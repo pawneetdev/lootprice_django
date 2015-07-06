@@ -1,14 +1,42 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <title>Rango</title>
+    </head>
+
+    <body>
+        <h1>{{ plat }}</h1>
+        {% if category %}
+            {% if mobiles %}
+            <ul>
+                {% for mobile in mobiles %}
+                <!--<li><a href="{{ mobile.url }}">{{ mobile.title }}</a></li>-->
+		 <select>
+		 	<option value="{{ mobile.title }}">{{ mobile.title }}</option>
+		 </select> 
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No mobiles currently in category.</strong>
+            {% endif %}
+        {% else %}
+            The specified category {{ category_platform }} does not exist!
+        {% endif %}
+    </body>
+</html>
+
+
+<!--<html>
 
     <head>
         <title>Compare Mobiles</title>
     </head>
     
     <body>
-        {% csrf_token %}
+        
         <h1>{{ plat }}</h1>
         
 
     </body>
 
-</html>
+</html>-->

@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^compare/', include('compare.urls')),
     #url(r'^display/', views.display),
     #url(r'^search/$', views.search, name = 'search'),
+    url(r'^$', views.homepage, name = 'homepage'),
 ]

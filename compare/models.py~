@@ -1,13 +1,14 @@
-from django.template.defaultfilters import slugify
+#from django.template.defaultfilters import slugify
 from django.db import models
 
 class Category(models.Model):
     platform = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(unique=True, null=True)
-    
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.platform)
-        super(Category, self).save(*args, **kwargs)
+#    slug = models.SlugField(unique=True)
+
+#    def save(self, *args, **kwargs):
+#    	self.slug = slugify(self.platform)
+#        super(Category, self).save(*args, **kwargs)
+
     
     def __unicode__(self):
         return self.platform

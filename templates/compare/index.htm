@@ -5,19 +5,18 @@
     </head>
     
     <body>
-        <h1>Find your perfect phone</h1>
-        <h2>Select mobile platform</h2>
+		<center><div style = "border: 1px solid; ">
+			<h1>Find your perfect phone</h1>
+			<h2>Select mobile platform</h2>
         
-        {% if categories %}
-            <ul>
-                {% for c in categories %}
-                    <li>{{ c.platform }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
-                
+			<form action="/compare/" method="POST">
+				{% csrf_token %}
+				{{ form }}
+				<input type="submit" value="Submit" />
+			</form>
+		</div></center>
     </body>
+    
+    
 
 </html>

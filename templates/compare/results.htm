@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>
+			Search results
+		</title>
+	</head>
+	
+	<body>
+		{% if search_post %}
+				<ol>
+					{% for mobile in search_post %}
+						<li><div style = "border: 1px solid; margin-bottom: 5px; padding-left: 10px; width:350px; height: 150px;">
+							<h2><div style = "float:left;"><img src = "{% static 'mobiles/'%}{{ mobile }}.jpg" height = "100" width = "80"></div>
+							<div style = "margin-left: 150px; padding-top: 10px;"><a href = "/compare/specs/{{ mobile.id }}">{{ mobile }}</a></h2>
+							<h4 style = "margin-left: 150px;">{{ mobile.price }}</h4></div></li>
+						</div>
+					{% endfor %}
+				</ol>
+		{% endif %}		
+	</body>
+</html>

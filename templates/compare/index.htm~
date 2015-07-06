@@ -8,16 +8,11 @@
         <h1>Find your perfect phone</h1>
         <h2>Select mobile platform</h2>
         
-        {% if categories %}
-            <ul>
-                {% for c in categories %}
-                    <li><a href = "{{ mobile.company }}">{{ c.platform }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
-                
+        <form action="/compare" method="POST">
+    		{% csrf_token %}
+	        {{ form }}
+        <input type="submit" value="Submit" />
+	</form>    
     </body>
 
 </html>
