@@ -9,5 +9,5 @@ urlpatterns = [url(r'^$', views.get_name, name = 'index'),
               url(r'^specs/(?P<mobile_id>[0-9]+)$', views.specs, name = 'specs'),
               url(r'^add/', views.compare, name = 'compare'),
               url(r'^add1/(?P<mobile_id>[0-9]+)$', views.add, name = 'add'),
-              url(r'^remove/$', views.remove, name = 'remove')
+              url(r'^remove/(?P<mobile_id>[0-9]+)$', views.remove, name = 'remove')
               ]

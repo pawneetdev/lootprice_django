@@ -10,9 +10,6 @@ import itertools
 #    context_dict = {'categories': category_list}
 #    return render(request, 'compare/index.htm', context_dict)
 
-def homepage(request):
-	return render(request, 'compare/homepage.htm')
-
 #def category(request, category_platform_slug):
 
     # Create a context dictionary which we can pass to the template rendering engine.
@@ -92,6 +89,10 @@ def homepage(request):
 #      form = NameForm()
 
 #   return render(request, 'compare/index.htm', {'form': form})
+
+def homepage(request):
+	return render(request, 'compare/homepage.htm')
+
 
 def get_name(request):
    
@@ -245,46 +246,96 @@ def add(request, mobile_id):
 	else:
 		form = compare_form()
 	
-	####here
-	if len(request.session['m'])<5:
-		try:
-			ids = [request.session['m'],]
-			chain = itertools.chain(*ids)
-			ids = list(set(chain))
-			ids.append(mobile_id)
+	try:
+		if len(request.session['m'])<4 :
+			try:
+				ids = [request.session['m'],]
+				chain = itertools.chain(*ids)
+				ids = list(set(chain))
+				ids.append(mobile_id)
+					
+				
+			except:
+				ids = []
+				ids = [mobile_id,]
+				
+			request.session['m'] = ids
+			print request.session['m']
+								
+				
+			for x in request.session['m']:
+				try:
+					mobile = mobile + [Mobile.objects.filter(id = x)]
 			
+				except UnboundLocalError:
+					mobile = [Mobile.objects.filter(id = x)]
+				
+			chain = itertools.chain(*mobile)
+			mobile = list(set(chain))
+			
+		else:
+			mobile = []
+
+			for x in request.session['m']:
+				try:
+					mobile = mobile + [Mobile.objects.filter(id = x)]
+			
+				except UnboundLocalError:
+					mobile = [Mobile.objects.filter(id = x)]
+				
+			chain = itertools.chain(*mobile)
+			mobile = list(set(chain))
+			
+			message = "*Cannot select more than 4 phones"
+			
+			return render(request, 'compare/compare.htm', {'message': message, 'mobile': mobile, 'form':form})
+			
+	except Exception:
 		
+		try:
+				ids = [request.session['m'],]
+				chain = itertools.chain(*ids)
+				ids = list(set(chain))
+				ids.append(mobile_id)
+					
+				
 		except:
 			ids = []
 			ids = [mobile_id,]
-			
+				
 		request.session['m'] = ids
 		print request.session['m']
-		
-		#mobile = []
-		
-		
+								
+				
 		for x in request.session['m']:
 			try:
 				mobile = mobile + [Mobile.objects.filter(id = x)]
-		
+			
 			except UnboundLocalError:
 				mobile = [Mobile.objects.filter(id = x)]
-			
+				
 		chain = itertools.chain(*mobile)
 		mobile = list(set(chain))
-		
+	
+				
 	return render(request, 'compare/compare.htm', {'mobile': mobile, 'form':form})
 
-def remove(request):
+def remove(request, mobile_id):
 
 	################################
 	#                              #
 	################################
 		
 	try:
-		del request.session['m']
+		if mobile_id == '0':
+			print "here"
+			del request.session['m']
+		else:
+			print request.session['m']
+			request.session['m'].remove(mobile_id)
+			print request.session['m']
 	except:
 		pass
 	
-	return compare(request)
+	
+	return add(request, 0)

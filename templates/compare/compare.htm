@@ -12,20 +12,92 @@
 			<input type="submit" value="Add">
 			
 		</form>
-		<a href = "/compare/remove/">Remove All</a>
+		<a href = "/compare/remove/0">Remove All</a><br>
 		
-		{% if request.session.m %}
+		{% if message %}
+			<br>{{ message }}<br><br>
+		{% endif %}
 		
-			{% for m in mobile %}
+		{% if mobile %}
 			
-				<li><div style = "border: 1px solid; margin-bottom: 5px; padding-left: 10px; width:350px; height: 150px;">
+					<div style = "padding-top: 10px;">
+						
+						<table style = "margin-top:50px; width:100%">
+							
+							<tr>
+								<td></td>
+								{% for m in mobile %}
+							
+									<td><a href = "/compare/remove/{{ m.id }}">Remove</a></td>
+							
+								{% endfor %}
+							</tr>
+							
+							<tr>
+								<td></td>
+								{% for m in mobile %}
+							
+									<td><font><u>{{ m }}</u></font></td>
+							
+								{% endfor %}
+							</tr>
+							
+							<tr>
+								<td></td>
+								{% for m in mobile %}
+
+									<td><img src = "{% static 'mobiles/'%}{{ m }}.jpg" height = "100" width = "80" style = ""></td>
+							
+								{% endfor %}
+							</tr>
+							
+							<tr>
+								<td><h3>Price</h3></td>
+							
+								{% for m in mobile %}
+							
+									<td><h3>{{ m.price }}</h3></td>
+							
+								{% endfor %}
+							</tr>
+							
+							<tr>
+								<td><h3>OS</h3></td>
+								{% for m in mobile %}
+								
+									<td><h3>{{ m.os }}</h3></td>
+								
+								{% endfor %}
+							</tr>
+							
+							<tr>
+								<td><h3>Processor</h3></td>
+								{% for m in mobile %}
+								
+									<td><h3>{{ m.processor }}</h3></td>
+									
+								{% endfor %}
+							</tr>
+							
+							<tr>
+								<td><h3>Camera</h3></td>
+								{% for m in mobile %}
+								
+									<td><h3>{{ m.camera }}</h3></td>
+								
+								{% endfor %}
+							</tr>
+						
+					</div>
+					
+				<!--<li><div style = "border: 1px solid; margin-bottom: 5px; padding-left: 10px; width:350px; height: 150px;">
 						<h2><div style = "float:left;"><img src = "{% static 'mobiles/'%}{{ m }}.jpg" height = "100" width = "80"></div>
 						<div style = "margin-left: 150px; padding-top: 10px;"><a href = "/compare/specs/{{ m }}">{{ m }}</a></h2>
 						<h4 style = "margin-left: 150px;">{{ m.price }}</h4></div></li>
-					</div>
-			{% endfor %}
+					</div>-->
+			
 		{% endif %}
-		<br><iframe src="http://www.flipkart.com/affiliate/displayWidget?affrid=WRID-143618759283822013" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" ></iframe>
+		<!--<br><iframe src="http://www.flipkart.com/affiliate/displayWidget?affrid=WRID-143618759283822013" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" ></iframe>-->
 		
 				
 	</body>
